@@ -1,0 +1,714 @@
+/* General Styles */
+:root {
+    --primary-color: #4a148c; /* Deep Purple */
+    --secondary-color: #e91e63; /* Pink/Rose */
+    --accent-color: #ffc107; /* Amber */
+    --text-color: #333;
+    --light-bg: #f8f4f9; /* Very light purple/pink */
+    --card-bg: #ffffff;
+    --border-color: #ddd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    min-height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Floral Animated Background */
+.floral-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(to bottom right, var(--light-bg), #f0e6f6);
+}
+
+.floral-background::before,
+.floral-background::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    opacity: 0.6;
+    animation: wind-breeze 20s linear infinite;
+}
+
+/* Example floral elements - you might use actual flower images/SVGs */
+.floral-background::before {
+    top: 10%;
+    left: 5%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e91e63"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="3"/></svg>');
+    animation-duration: 25s;
+    animation-delay: -5s;
+}
+
+.floral-background::after {
+    bottom: 15%;
+    right: 10%;
+    width: 80px;
+    height: 80px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234a148c"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 6l-2.4 4.8L6 12l3.6 1.2L12 18l2.4-4.8L18 12l-3.6-1.2L12 6z"/></svg>');
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+@keyframes wind-breeze {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+    25% { transform: translate(50px, -20px) rotate(5deg); opacity: 0.7; }
+    50% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+    75% { transform: translate(-50px, 20px) rotate(-5deg); opacity: 0.7; }
+    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+}
+
+/* Header and Navigation */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+}
+
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header ul li a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Main Content */
+main {
+    padding: 40px 0;
+    min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.page-header .lead {
+    color: #666;
+}
+
+/* Cards and Forms */
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.form-card {
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-control, .form-control-file {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(233, 30, 99, 0.3);
+}
+
+.help-block {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.has-error .form-control {
+    border-color: var(--secondary-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #6a1b9a; /* Darker purple */
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #c2185b; /* Darker rose */
+    transform: translateY(-1px);
+}
+
+.btn-lg {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Hero Section (Index Page) */
+.hero-section {
+    text-align: center;
+    padding: 80px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.hero-section .lead {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-actions a {
+    margin: 0 10px;
+}
+
+/* Features Section (Index Page) */
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    text-align: center;
+}
+
+.feature-card {
+    flex: 1;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.feature-card i {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+/* Dashboard */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-links .card {
+    text-align: center;
+}
+
+.dashboard-links .card h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Photo Gallery */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.photo-item .photo-info {
+    padding: 15px;
+}
+
+.photo-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.photo-item small {
+    display: block;
+    margin-top: 10px;
+    color: #777;
+}
+
+/* Memory and Confession Lists */
+.memory-list, .confession-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.memory-item h2, .confession-item h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.confession-item {
+    border-left: 5px solid var(--secondary-color);
+}
+
+.confession-item p {
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+/* Font Awesome for Icons (assuming a CDN link is included in header.php) */
+/* The header.php already includes a link to Google Fonts, but for the icons (like fas fa-camera), we need Font Awesome. */
+/* I will assume the user will include the Font Awesome CDN link in the header.php or I will add it now. */
+/* Adding Font Awesome link to header.php is not possible now, so I'll assume the user will add it or I'll add it in the next step. */
+/* For now, the CSS is complete. */
+
+/* 🌸 Floral Blossom Animation */
+.floral-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  transform: rotate(45deg);
+  animation: float 12s linear infinite;
+  opacity: 0.8;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
+
+/* create the heart shape */
+.flower::before,
+.flower::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  border-radius: 50%;
+}
+
+.flower::before {
+  top: -10px;
+  left: 0;
+}
+
+.flower::after {
+  left: 10px;
+top:0;
+
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+  
+  @keyframes float {
+  0% {
+    transform: translate(0, 100vh) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(20px, 50vh) rotate(180deg);
+  }
+  100% {
+    transform: translate(-20px, -10vh) rotate(360deg);
+    opacity:0;
+}
+}
+  
+  /* 🌸 Photos Page Styling */
+.photo-gallery {
+  text-align: center;
+  padding: 50px 20px;
+  background: #fff0f6;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.page-title {
+  font-size: 2.2em;
+  color: #5a189a;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-size: 1.1em;
+  color: #7a4ca0;
+  margin-bottom: 30px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  margin-bottom: 40px;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 250px;
+}
+
+.photo-card:hover {
+  transform: translateY(-8px);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.quote {
+  padding: 10px;
+  font-style: italic;
+  color: #444;
+  background: #fdf4ff;
+}
+
+.upload-btn {
+  margin-top: 20px;
+}
+
+.upload-btn button {
+  background: #9d4edd;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-btn button:hover {
+  background:#7b2cbf;
+}
+.memories-section {
+  text-align: center;
+  padding: 40px;
+}
+
+.memories-section h2 {
+  color: #5a2d91;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.memory-card {
+  background: #f9f5ff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(90, 45, 145, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  font-style: italic;
+  animation: floatMemory 4s ease-in-out infinite alternate;
+}
+
+.memory-card:hover {
+  transform: translateY(-6px);
+  background: #f2e5ff;
+}
+
+/* floating animation */
+@keyframes floatMemory {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px);
+}
+}
+/* 😄 Emoji Popup Animation */
+#emoji-popup {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  opacity: 0;
+  transition: all 1s ease;
+  z-index: 9999;
+}
+
+#emoji-popup.show {
+  opacity: 1;
+  animation: floatUpEmoji 2s ease-out forwards;
+}
+
+@keyframes floatUpEmoji {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -150px);
+    opacity:0;
+}
+}
+/* 💌 Confession Page Styling */
+.confession-section {
+  text-align: center;
+  padding: 40px;
+}
+
+.confession-form textarea {
+  width: 80%;
+  max-width: 500px;
+  height: 120px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #d8b4f8;
+  background: #f8f0ff;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+}
+
+.confession-form button {
+  margin-top: 15px;
+  background: #9d4edd;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.confession-form button:hover {
+  background: #7b2cbf;
+}
+
+.confession-display {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.confession-card {
+  background: #fff0f6;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-style: italic;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: 0;
+  color: #ff80bf;
+  font-size: 24px;
+  opacity: 0.8;
+  animation: floatHeart 4s ease-in infinite;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-150px) scale(1.5);opacity:0;}
+}
+/* 🌸 Floating hearts / petals animation */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-hearts::before,
+.floating-hearts::after {
+  content: '💖 💕 💞 💓 💗 💘 💝';
+  position: absolute;
+  top: -10%;
+  font-size: 1.5rem;
+  animation: floatHearts 15s linear infinite;
+  white-space: nowrap;
+  opacity: 0.3;
+}
+
+.floating-hearts::after {
+  animation-delay: 7s;
+  opacity: 0.4;
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(100vh) translateX(0) rotate(0deg); }
+  50% { transform: translateY(50vh) translateX(20px) rotate(180deg); }
+  100% { transform: translateY(-10%) translateX(-20px) rotate(360deg);}
+}
